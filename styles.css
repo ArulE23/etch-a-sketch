@@ -1,0 +1,25 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#sketch-grid {
+  box-sizing: content-box;
+  border: 2px solid black;
+  height: 720px;
+  width: 720px;
+  display: flex;
+  flex-direction: column;
+}
