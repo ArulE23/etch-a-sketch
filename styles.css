@@ -23,3 +23,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+#grid-size {
+  width: 50px;
+}

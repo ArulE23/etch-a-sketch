@@ -1,9 +1,10 @@
-const sketchGrid = document.querySelector("#sketch-grid");
+const DEFAULT_GRID_SIZE = 16;
 
 const colourCellBlack = (event) => {
   event.target.style.backgroundColor = "black";
 }
 
+const sketchGrid = document.querySelector("#sketch-grid");
 function initGrid(size) {
   sketchGrid.replaceChildren();
   for (let i = 0; i < size; i++) {
@@ -23,4 +24,9 @@ function initGrid(size) {
   }
 }
 
-initGrid(16);
+const gridSizeInput = document.querySelector("#grid-size");
+gridSizeInput.addEventListener("change", () => {
+  initGrid(gridSizeInput.value);
+})
+
+initGrid(DEFAULT_GRID_SIZE);
