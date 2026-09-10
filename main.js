@@ -20,12 +20,9 @@ const colourCellRainbow = (event) => {
   }
 }
 
-let currColourOption = colourCellSolid;
-
 const colourCellSketch = (event) => {
   const cell = event.target;
   if (!cell.style.backgroundColor) {
-    cell.style.backgroundColor = "rgb(0,0,0)";
     cell.style.opacity = "0";
   }
   const cellOpacity = parseFloat(cell.style.opacity);
@@ -34,8 +31,18 @@ const colourCellSketch = (event) => {
   }
 }
 
+let cellColourOption = colourCellSolid;
+
+const progressiveCheckbox = document.querySelector("#progressive");
+const colourCell = (event) => {
+  if (progressiveCheckbox.checked) {
+    colourCellSketch(event);
+  }
+  cellColourOption(event);
+}
+
 const sketchGrid = document.querySelector("#sketch-grid");
-function initGrid(size, colourOption) {
+function initGrid(size) {
   sketchGrid.replaceChildren();
   for (let i = 0; i < size; i++) {
     const row = document.createElement("div");
@@ -47,7 +54,7 @@ function initGrid(size, colourOption) {
     for (let i = 0; i < size; i++) {
       const cell = document.createElement("div");
       cell.style.flex = "1";
-      cell.addEventListener("mouseover", colourOption);
+      cell.addEventListener("mouseover", colourCell);
       child.appendChild(cell);
     }
   }
@@ -55,7 +62,7 @@ function initGrid(size, colourOption) {
 
 const gridSizeInput = document.querySelector("#grid-size");
 gridSizeInput.addEventListener("input", () => {
-  initGrid(gridSizeInput.value, currColourOption);
+  initGrid(gridSizeInput.value);
 })
 
 const colourButtons = document.querySelector("#colour-btns");
@@ -63,22 +70,12 @@ colourButtons.addEventListener("click", (event) => {
   const targetId = event.target.id;
   switch (targetId) {
     case "solid-btn":
-      currColourOption = colourCellSolid;
+      cellColourOption = colourCellSolid;
       break;
     case "rainbow-btn":
-      currColourOption = colourCellRainbow;
+      cellColourOption = colourCellRainbow;
       break;
   }
-  initGrid(gridSizeInput.value, currColourOption)
 })
 
-const progressiveCheckbox = document.querySelector("#progressive");
-progressiveCheckbox.addEventListener("input", () => {
-  if (progressiveCheckbox.checked == true) {
-    initGrid(gridSizeInput.value, colourCellSketch);
-  } else {
-    initGrid(gridSizeInput.value, currColourOption);
-  }
-})
-
-initGrid(DEFAULT_GRID_SIZE, currColourOption);
+initGrid(DEFAULT_GRID_SIZE);
