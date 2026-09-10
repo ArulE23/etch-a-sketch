@@ -1,34 +1,41 @@
-const sketchGrid = document.querySelector("#sketch-grid");
-const gridSizeInput = document.querySelector("#grid-size");
 const DEFAULT_GRID_SIZE = 16;
 
-const colourCellBlack = (event) => {
-  event.target.style.backgroundColor = "black";
+function randomRGBValue() {
+  return Math.floor(Math.random() * 256);
 }
 
-/**
- * Extracts the opacity value of an rgba string as a number.
- * e.g: "rgba(0, 0, 0, 0.1)" -> 0.1.
- */
-function getRgbaOpacity(bgColor) {
-  if (bgColor.includes("rgba")) {
-    return Number(bgColor.split(",").at(-1).replace(")", ""));
-  } else {
-    return 1;
+const colourCellSolid = (event) => {
+  if (!event.target.style.backgroundColor) {
+    const solidClr = document.querySelector("#solid-clr").value;
+    event.target.style.backgroundColor = solidClr;
   }
 }
 
-const colourCellProgressive = (event) => {
+const colourCellRainbow = (event) => {
+  if (!event.target.style.backgroundColor) {
+    const red = randomRGBValue();
+    const green = randomRGBValue();
+    const blue = randomRGBValue();
+    event.target.style.backgroundColor = `rgb(${red}, ${green}, ${blue})`;
+  }
+}
+
+let currColourOption = colourCellSolid;
+
+const colourCellSketch = (event) => {
   const cell = event.target;
-  const bgColor = window.getComputedStyle(cell).backgroundColor;
-  let opacity = getRgbaOpacity(bgColor);
-  if (opacity < 1) {
-    opacity += 0.1;
-    cell.style.backgroundColor = `rgba(0,0,0,${opacity})`;
+  if (!cell.style.backgroundColor) {
+    cell.style.backgroundColor = "rgb(0,0,0)";
+    cell.style.opacity = "0";
+  }
+  const cellOpacity = parseFloat(cell.style.opacity);
+  if (cellOpacity < 1) {
+    cell.style.opacity = `${cellOpacity + 0.1}`;
   }
 }
 
-function initGrid(size) {
+const sketchGrid = document.querySelector("#sketch-grid");
+function initGrid(size, colourOption) {
   sketchGrid.replaceChildren();
   for (let i = 0; i < size; i++) {
     const row = document.createElement("div");
@@ -40,14 +47,38 @@ function initGrid(size) {
     for (let i = 0; i < size; i++) {
       const cell = document.createElement("div");
       cell.style.flex = "1";
-      cell.addEventListener("mouseover", colourCellProgressive);
+      cell.addEventListener("mouseover", colourOption);
       child.appendChild(cell);
     }
   }
 }
 
-gridSizeInput.addEventListener("change", () => {
-  initGrid(gridSizeInput.value);
+const gridSizeInput = document.querySelector("#grid-size");
+gridSizeInput.addEventListener("input", () => {
+  initGrid(gridSizeInput.value, currColourOption);
 })
 
-initGrid(DEFAULT_GRID_SIZE);
+const colourButtons = document.querySelector("#colour-btns");
+colourButtons.addEventListener("click", (event) => {
+  const targetId = event.target.id;
+  switch (targetId) {
+    case "solid-btn":
+      currColourOption = colourCellSolid;
+      break;
+    case "rainbow-btn":
+      currColourOption = colourCellRainbow;
+      break;
+  }
+  initGrid(gridSizeInput.value, currColourOption)
+})
+
+const progressiveCheckbox = document.querySelector("#progressive");
+progressiveCheckbox.addEventListener("input", () => {
+  if (progressiveCheckbox.checked == true) {
+    initGrid(gridSizeInput.value, colourCellSketch);
+  } else {
+    initGrid(gridSizeInput.value, currColourOption);
+  }
+})
+
+initGrid(DEFAULT_GRID_SIZE, currColourOption);
