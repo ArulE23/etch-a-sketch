@@ -33,9 +33,9 @@ const colourCellSketch = (event) => {
 
 let cellColourOption = colourCellSolid;
 
-const progressiveCheckbox = document.querySelector("#progressive");
+const sketchCheckbox = document.querySelector("#sketch-check");
 const colourCell = (event) => {
-  if (progressiveCheckbox.checked) {
+  if (sketchCheckbox.checked) {
     colourCellSketch(event);
   }
   cellColourOption(event);
