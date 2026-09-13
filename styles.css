@@ -10,19 +10,32 @@ html {
 
 body {
   margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  height: 900px;
+  align-items: center;
+}
+
+#main-container {
+  background-color: red;
+  margin: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 1000px;
+  height: 900px;
 }
 
 #sketch-grid {
   box-sizing: content-box;
   border: 2px solid black;
-  height: 720px;
   width: 720px;
+  height: 720px;  
   display: flex;
   flex-direction: column;
-  margin: 10px;
+  margin: 0px;
+  background-color: white;
 }
 
 #grid-size {
