@@ -1,5 +1,3 @@
-const DEFAULT_GRID_SIZE = 16;
-
 function randomRGBValue() {
   return Math.floor(Math.random() * 256);
 }
@@ -42,7 +40,9 @@ const colourCell = (event) => {
 }
 
 const sketchGrid = document.querySelector("#sketch-grid");
-function initGrid(size) {
+const gridSizeInput = document.querySelector("#grid-size");
+function initGrid() {
+  const size = gridSizeInput.value;
   sketchGrid.replaceChildren();
   for (let i = 0; i < size; i++) {
     const row = document.createElement("div");
@@ -60,10 +60,7 @@ function initGrid(size) {
   }
 }
 
-const gridSizeInput = document.querySelector("#grid-size");
-gridSizeInput.addEventListener("input", () => {
-  initGrid(gridSizeInput.value);
-})
+gridSizeInput.addEventListener("input", initGrid)
 
 const colourButtons = document.querySelector("#colour-btns");
 colourButtons.addEventListener("click", (event) => {
@@ -78,4 +75,7 @@ colourButtons.addEventListener("click", (event) => {
   }
 })
 
-initGrid(DEFAULT_GRID_SIZE);
+const clearBtn = document.querySelector("#clear-btn");
+clearBtn.addEventListener("click", initGrid)
+
+initGrid();
