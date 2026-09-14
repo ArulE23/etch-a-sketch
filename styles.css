@@ -18,26 +18,72 @@ body {
 }
 
 #main-container {
-  background-color: red;
-  margin: 0px;
+  background-color: rgb(235, 8, 8);
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 1000px;
+  gap: 20px;
+  padding: 10px 125px 70px 125px;
+  border: 5px solid red;
+  border-radius: 50px;
+  /* box-shadow: 0px 0px 50px black; */
+  /* width: 1000px;
+  height: 1000px; */
   height: 900px;
+}
+
+h1 {
+  margin: 0px;
+  font-family: serif;
+  color: gold;
 }
 
 #sketch-grid {
   box-sizing: content-box;
-  border: 2px solid black;
-  width: 720px;
-  height: 720px;  
+  border: 2px solid red;
+  box-shadow: 0px 0px 10px black inset;
+  width: 680px;
+  height: 680px;  
   display: flex;
   flex-direction: column;
   margin: 0px;
   background-color: white;
+  flex: 1 0 auto;
+}
+
+#btns-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 720px; */
+  height: 100px;
+}
+
+#colour-btns {
+  display: flex;
+  align-items: row;
+  justify-content: space-between;
 }
 
 #grid-size {
   width: 50px;
+}
+
+.dial {
+  height: 175px;
+  width: 175px;
+  background-color: white;
+  border: 2px solid grey;
+  border-radius: 100px;
+  position: relative;
+}
+
+.left-dial {
+  right: 130px;
+}
+
+.right-dial {
+  left: 130px;
 }

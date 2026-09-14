@@ -9,28 +9,31 @@
   <body>
     <div id="main-container">
       <h1>Etch-A-Sketch</h1>
-       <div id="sketch-grid">
+      <div id="sketch-grid">
       </div>
-      <div>
-        <label for="grid-size">Grid Size</label>
-        <input type="number" id="grid-size" name="grid-size"
-        min="1" max="100" value="16"/>
-      </div>
-      <div id="colour-btns">
+      <div id="btns-container">
+        <div class="dial left-dial"></div>
         <div>
-          <button id="solid-btn">Solid</button>
-          <input type="color" id="solid-clr" name="solid-clr" value="#000000" />
+          <label for="grid-size">Grid Size</label>
+          <input type="number" id="grid-size" name="grid-size"
+          min="1" max="100" value="16"/>
         </div>
-        <button id="rainbow-btn">Rainbow</button>
+        <div id="colour-btns">
+          <div>
+            <button id="solid-btn">Solid</button>
+            <input type="color" id="solid-clr" name="solid-clr" value="#000000" />
+          </div>
+          <button id="rainbow-btn">Rainbow</button>
+        </div>
+        <div>
+          <input type="checkbox" id="sketch-check" name="sketch-check" />
+          <label for="sketch-check">Sketch</label>
+        </div>
+        <div>
+          <button id="clear-btn">Clear</button>
+        </div>
+        <div class="dial right-dial"></div>
       </div>
-      <div>
-        <input type="checkbox" id="sketch-check" name="sketch-check" />
-        <label for="sketch-check">Sketch</label>
-      </div>
-      <div>
-        <button id="clear-btn">Clear</button>
-      </div>
-     
     </div>
 
     <script src="./main.js"></script>
