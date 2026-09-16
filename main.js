@@ -1,3 +1,5 @@
+let SKETCH_MODE = false;
+
 function randomRGBValue() {
   return Math.floor(Math.random() * 256);
 }
@@ -31,9 +33,8 @@ const colourCellSketch = (event) => {
 
 let cellColourOption = colourCellSolid;
 
-const sketchCheckbox = document.querySelector("#sketch-check");
 const colourCell = (event) => {
-  if (sketchCheckbox.checked) {
+  if (SKETCH_MODE) {
     colourCellSketch(event);
   }
   cellColourOption(event);
@@ -80,6 +81,17 @@ colourButtons.addEventListener("click", (event) => {
       break;
   }
 })
+
+const sketchBtn = document.querySelector("#sketch-btn");
+sketchBtn.addEventListener("click", () => {
+  if (SKETCH_MODE) {
+    sketchBtn.classList.remove("clicked");
+  } else {
+    sketchBtn.classList.add("clicked");
+  }
+  SKETCH_MODE = !SKETCH_MODE;
+})
+
 
 const clearBtn = document.querySelector("#clear-btn");
 clearBtn.addEventListener("click", initGrid)
