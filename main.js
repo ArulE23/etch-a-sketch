@@ -63,14 +63,20 @@ function initGrid() {
 gridSizeInput.addEventListener("input", initGrid)
 
 const colourButtons = document.querySelector("#colour-btns");
+const solidBtn = document.querySelector("#solid-btn");
+const rainbowBtn = document.querySelector("#rainbow-btn");
 colourButtons.addEventListener("click", (event) => {
-  const targetId = event.target.id;
-  switch (targetId) {
-    case "solid-btn":
+  const target = event.target;
+  switch (target) {
+    case solidBtn:
       cellColourOption = colourCellSolid;
+      rainbowBtn.classList.remove("clicked");
+      solidBtn.classList.add("clicked");
       break;
-    case "rainbow-btn":
+    case rainbowBtn:
       cellColourOption = colourCellRainbow;
+      solidBtn.classList.remove("clicked");
+      rainbowBtn.classList.add("clicked");
       break;
   }
 })
