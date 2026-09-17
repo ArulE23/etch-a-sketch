@@ -11,25 +11,25 @@
       <h1>Etch-A-Sketch</h1>
       <div id="sketch-grid">
       </div>
-      <div id="btns-container">
+      <div id="bottom-section">
         <div class="dial left-dial"></div>
-        <div>
-          <label for="grid-size">Grid Size</label>
-          <input type="number" id="grid-size" name="grid-size"
-          min="1" max="100" value="16"/>
-        </div>
-        <div id="colour-btns">
-          <div>
+        <div id="btns-container">
+          <div id="size-btns">
+            <button id="size-s" class="clicked">Small</button>
+            <button id="size-m">Medium</button>
+            <button id="size-l">Large</button>
+          </div>
+          <div id="colour-btns">
             <input type="color" id="solid-clr" name="solid-clr" value="#1e1e1e" />
             <button id="solid-btn" class="clicked">Solid</button>
+            <button id="rainbow-btn">Rainbow</button>
           </div>
-          <button id="rainbow-btn">Rainbow</button>
-        </div>
-        <div>
-          <button id="sketch-btn">Sketch Mode</button>
-        </div>
-        <div>
-          <button id="clear-btn">Clear</button>
+          <div>
+            <button id="sketch-btn">Sketch Mode</button>
+          </div>
+          <div>
+            <button id="clear-btn">Clear</button>
+          </div>
         </div>
         <div class="dial right-dial"></div>
       </div>

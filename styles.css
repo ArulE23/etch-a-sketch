@@ -48,7 +48,7 @@ h1 {
   flex: 1 0 auto;
 }
 
-#btns-container {
+#btns-container, #bottom-section {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -56,9 +56,13 @@ h1 {
   height: 100px;
 }
 
+#size-btns {
+  display: flex;
+}
+
 #colour-btns {
   display: flex;
-  align-items: row;
+  align-items: center;
   justify-content: space-between;
 }
 
@@ -98,5 +102,6 @@ button {
 #solid-clr {
   background: none;
   border: none;
-  width: 27px;
+  width: 32px;
+  height: 32px;
 }

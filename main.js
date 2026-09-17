@@ -1,4 +1,6 @@
-let SKETCH_MODE = false;
+let sketchMode = false;
+let cellColourOption;
+let gridSize = 16;
 
 function randomRGBValue() {
   return Math.floor(Math.random() * 256);
@@ -10,6 +12,7 @@ const colourCellSolid = (event) => {
     event.target.style.backgroundColor = solidClr;
   }
 }
+cellColourOption = colourCellSolid;
 
 const colourCellRainbow = (event) => {
   if (!event.target.style.backgroundColor) {
@@ -31,28 +34,24 @@ const colourCellSketch = (event) => {
   }
 }
 
-let cellColourOption = colourCellSolid;
-
 const colourCell = (event) => {
-  if (SKETCH_MODE) {
+  if (sketchMode) {
     colourCellSketch(event);
   }
   cellColourOption(event);
 }
 
 const sketchGrid = document.querySelector("#sketch-grid");
-const gridSizeInput = document.querySelector("#grid-size");
 function initGrid() {
-  const size = gridSizeInput.value;
   sketchGrid.replaceChildren();
-  for (let i = 0; i < size; i++) {
+  for (let i = 0; i < gridSize; i++) {
     const row = document.createElement("div");
     row.style.display = "flex";
     row.style.flex = "1";
     sketchGrid.appendChild(row);
   }
   for (child of document.querySelectorAll("#sketch-grid > div")) {
-    for (let i = 0; i < size; i++) {
+    for (let i = 0; i < gridSize; i++) {
       const cell = document.createElement("div");
       cell.style.flex = "1";
       cell.addEventListener("mouseover", colourCell);
@@ -61,12 +60,41 @@ function initGrid() {
   }
 }
 
-gridSizeInput.addEventListener("input", initGrid)
+const sizeBtns = document.querySelector("#size-btns");
+const smallBtn = document.querySelector("#size-s");
+const mediumBtn = document.querySelector("#size-m");
+const largeBtn = document.querySelector("#size-l");
+sizeBtns.addEventListener("click", (event) => {
+  const target = event.target;
+  switch (target) {
+    case smallBtn:
+      gridSize = 16;
+      smallBtn.classList.add("clicked");
+      mediumBtn.classList.remove("clicked");
+      largeBtn.classList.remove("clicked");
+      initGrid();
+      break;
+    case mediumBtn:
+      gridSize = 48;
+      smallBtn.classList.remove("clicked");
+      mediumBtn.classList.add("clicked");
+      largeBtn.classList.remove("clicked");
+      initGrid();
+      break;
+    case largeBtn:
+      gridSize = 112;
+      smallBtn.classList.remove("clicked");
+      mediumBtn.classList.remove("clicked");
+      largeBtn.classList.add("clicked");
+      initGrid();
+      break;
+  }
+})
 
-const colourButtons = document.querySelector("#colour-btns");
+const colourBtns = document.querySelector("#colour-btns");
 const solidBtn = document.querySelector("#solid-btn");
 const rainbowBtn = document.querySelector("#rainbow-btn");
-colourButtons.addEventListener("click", (event) => {
+colourBtns.addEventListener("click", (event) => {
   const target = event.target;
   switch (target) {
     case solidBtn:
@@ -84,12 +112,12 @@ colourButtons.addEventListener("click", (event) => {
 
 const sketchBtn = document.querySelector("#sketch-btn");
 sketchBtn.addEventListener("click", () => {
-  if (SKETCH_MODE) {
+  if (sketchMode) {
     sketchBtn.classList.remove("clicked");
   } else {
     sketchBtn.classList.add("clicked");
   }
-  SKETCH_MODE = !SKETCH_MODE;
+  sketchMode = !sketchMode;
 })
 
 const clearBtn = document.querySelector("#clear-btn");
