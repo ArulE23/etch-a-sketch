@@ -30,7 +30,7 @@ const colourCellSketch = (event) => {
   }
   const cellOpacity = parseFloat(cell.style.opacity);
   if (cellOpacity < 1) {
-    cell.style.opacity = `${cellOpacity + 0.1}`;
+    cell.style.opacity = `${cellOpacity + 0.2}`;
   }
 }
 

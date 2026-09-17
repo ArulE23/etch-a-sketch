@@ -54,6 +54,7 @@ h1 {
   align-items: center;
   justify-content: space-between;
   height: 100px;
+  gap: 10px;
 }
 
 #size-btns {
