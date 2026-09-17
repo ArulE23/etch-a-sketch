@@ -92,8 +92,13 @@ sketchBtn.addEventListener("click", () => {
   SKETCH_MODE = !SKETCH_MODE;
 })
 
-
 const clearBtn = document.querySelector("#clear-btn");
 clearBtn.addEventListener("click", initGrid)
+clearBtn.addEventListener("mousedown", () => {
+  clearBtn.classList.add("clicked");
+})
+clearBtn.addEventListener("mouseup", () => {
+  clearBtn.classList.remove("clicked");
+})
 
 initGrid();
