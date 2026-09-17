@@ -97,7 +97,7 @@ clearBtn.addEventListener("click", initGrid)
 clearBtn.addEventListener("mousedown", () => {
   clearBtn.classList.add("clicked");
 })
-clearBtn.addEventListener("mouseup", () => {
+window.addEventListener("mouseup", () => {
   clearBtn.classList.remove("clicked");
 })
 
