@@ -15,6 +15,7 @@ body {
   justify-content: center;
   align-items: center;
   font-family: serif;
+  background: rgb(170, 162, 142);
 }
 
 #main-container {
@@ -81,12 +82,12 @@ h1 {
 }
 
 .left-dial {
-  right: 60px;
+  right: 50px;
   bottom: 10px;
 }
 
 .right-dial {
-  left: 60px;
+  left: 50px;
   bottom: 10px;
 }
 
